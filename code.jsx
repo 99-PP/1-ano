@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Camera, Calendar, Music, Volume2, VolumeX, ChevronDown } from 'lucide-react';
