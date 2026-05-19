@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Heart, Camera, Calendar, Music, Volume2, VolumeX, ChevronDown } from 'lucide-react';
 
 // --- CONFIGURAÇÃO DE PERSONALIZAÇÃO ---
@@ -40,13 +40,14 @@ const DATA = {
   }
 };
 
-const Section = ({ children, className }) => (
+const Section = ({ children, className, ...props }) => (
   <motion.section 
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: "-100px" }}
     transition={{ duration: 0.8, ease: "easeOut" }}
     className={`py-20 px-6 max-w-6xl mx-auto ${className}`}
+    {...props}
   >
     {children}
   </motion.section>
@@ -94,7 +95,12 @@ export default function AnniversarySite() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             className="border border-white/50 backdrop-blur-md px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all duration-500"
-            onClick={() => document.getElementById('story').scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => {
+              const storySection = document.getElementById('story');
+              if (storySection) {
+                storySection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
           >
             Ver a nossa história
           </motion.button>
